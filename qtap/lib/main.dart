@@ -107,7 +107,7 @@ class _ChatInterfaceState extends State<ChatInterface> {
   }
 
   Future<void> _initRoom() async {
-    String roomId = 'your_room_id_here'; // Replace with your actual room ID
+    String roomId = '!qGBHpIbHUSWjRAXydo:matrix.org'; // Replace with your actual room ID
     final room = widget.client.getRoomById(roomId);
 
     if (room != null) {
