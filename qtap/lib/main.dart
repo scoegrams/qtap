@@ -4,22 +4,26 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 // Entry point of the application.
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize the client with a custom database location.
+  // Initialize the client with the Matrix.org homeserver and a 
+  //custom database location.
   final client = Client(
-    'SimpleMatrixChat',
+    "https://matrix.to/#/!qGBHpIbHUSWjRAXydo:matrix.org?via=matrix.org", // This specifies the homeserver URL
     databaseBuilder: (_) async {
       final dir = await getApplicationDocumentsDirectory();
       final db = HiveCollectionsDatabase('simple_matrix_chat', dir.path);
       await db.open();
       return db;
     },
+    
   );
-  // Initialize the client before running the app.
+  
   await client.init();
   runApp(SimpleMatrixChat(client: client));
 }
+
 
 // Main widget of the application.
 class SimpleMatrixChat extends StatelessWidget {
